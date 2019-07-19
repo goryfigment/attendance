@@ -1,0 +1,113 @@
+#first-wrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+#nav-wrapper {
+    position: absolute;
+    right: 8px;
+    top: 22px;
+    z-index: 1;
+}
+
+#login-button {
+    margin-right: 4px;
+}
+
+#register-button {
+    border: #ffffff solid 2px;
+    -webkit-border-radius: 1px;
+            border-radius: 1px;
+}
+
+#register-button:hover {
+    background: #ffffff1c;
+}
+
+#login-button, #register-button {
+    color: #eee;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#home-header {
+    overflow: hidden;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 70%;
+    min-height: 250px;
+    position: relative;
+}
+
+#home-header img {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+}
+
+#home-title {
+    color: #ffffff;
+    width: 195px;
+    background: #7070702e;
+    border: 1px solid #ffffff38;
+    padding: 7px 0;
+}
+
+#home-description {
+    margin: 0;
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#home-points {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 30%;
+    background: #0f0f0f;
+    min-height: 175px;
+}
+
+.icon-wrapper {
+    width: 33%;
+    text-align: center;
+    max-width: 360px;
+    margin: auto auto;
+}
+
+.icon-point {
+    color: #3f9af8;
+    font-size: 50px;
+}
+
+.icon-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.icon-description {
+    color: #b4b4b4;
+    line-height: 20px;
+}
+

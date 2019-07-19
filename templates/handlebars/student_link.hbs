@@ -1,0 +1,40 @@
+<div id="student-link-container">
+    <div id="student-link-details-wrapper">
+        <div id="student-link-section-1">
+            <span id="link-icon"><i class="fas fa-link"></i></span>
+            Select Students to add to the Class.
+        </div>
+        <div id="student-link-section-2">
+            <table id="student-roster-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" scope="col">Roster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each students}}
+                        <tr class="roster-link-student" data-id="{{id}}">
+                            <td class="student-name">
+                                <span class="roster-check">
+                                    <input type="checkbox" id="roster-checkbox-{{id}}" data-type="columns" class="checkbox-input column-filter" style="display: none" value="{{id}}" {{rosterCheck id}}>
+                                    <label for="roster-checkbox-{{id}}" class="check-box-wrapper">
+                                        <span class="check-box">
+                                            <svg width="12px" height="10px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </span>
+                                {{first_name}} {{last_name}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="student-link-submit-wrapper">
+    <button id="student-link-cancel-button">Cancel</button>
+    <button id="student-link-submit-button">Update Roster</button>
+</div>

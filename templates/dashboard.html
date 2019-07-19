@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script>
+        var globals = {};
+        globals.base_url = '{{base_url}}';
+        globals.classes = {{classes|safe}};
+        globals.students = {{students|safe}};
+        globals.student_length = {{student_length}};
+        globals.start_of_day = {{start_of_day}};
+    </script>
+
+</head>
+<body>
+
+    {% csrf_token %}
+
+    <div id="header-wrapper">
+        <div id="icon-wrapper"><i class="fas fa-apple-alt"></i><span id="a-logo">A</span><span id="ttendance-logo">ttendance</span></div>
+        <div id="search-wrapper">
+            <span id="search-icon"><i class="fas fa-search"></i></span>
+            <input id="search-input" name="q" value="" autocomplete="off" placeholder="Search">
+        </div>
+        <div id="nav-wrapper">
+            <span class="nav-links" id="home-link">Dashboard</span>
+            <span class="nav-links" id="account-link">Account</span>
+            <div id="account-wrapper">
+                <div>{{ name }}
+                    <span id="username">{{ username }}</span>
+                </div>
+                <div class="account-links" id="logout-link"><span id="logout-icon"><i class="fas fa-sign-out-alt"></i></span>Logout</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-wrapper">
+        <div id="side-bar-wrapper"></div>
+        <div id="body-wrapper"></div>
+    </div>
+
+    <div id="overlay">
+        <div id="create-class-wrapper">
+            <div id="create-class-container">
+                <div id="class-details-wrapper">
+                    <div id="class-section-1">
+                        <span id="class-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                        <label for="class-name-input">Class Name</label>
+                        <input type="text" id="class-name-input"/>
+                    </div>
+                    <div id="class-section-2">
+                        <label for="class-name-input">Day Schedule</label>
+                        <div id="day-wrapper">
+                            <input type="checkbox" id="monday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Monday" style="display: none">
+                            <label for="monday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Monday</span>
+                            </label>
+                            <input type="checkbox" id="tuesday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Tuesday" style="display: none">
+                            <label for="tuesday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Tuesday</span>
+                            </label>
+                            <input type="checkbox" id="wednesday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Wednesday" style="display: none">
+                            <label for="wednesday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Wednesday</span>
+                            </label>
+                            <input type="checkbox" id="thursday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Thursday" style="display: none">
+                            <label for="thursday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Thursday</span>
+                            </label>
+                            <input type="checkbox" id="friday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Friday" style="display: none">
+                            <label for="friday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Friday</span>
+                            </label>
+                            <input type="checkbox" id="saturday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Saturday" style="display: none">
+                            <label for="saturday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Saturday</span>
+                            </label>
+                            <input type="checkbox" id="sunday-checkbox" data-type="columns" class="checkbox-input column-filter" value="Sunday" style="display: none">
+                            <label for="sunday-checkbox" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="check-box-label">Sunday</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="class-section-3">
+                        <label>Time Schedule</label>
+                        <div id="time-wrapper">
+                            <label class="time-label">From</label>
+                            <div class="time-input-wrapper" id="left-time-input-wrapper">
+                                <input class="hour-input" id="left-hour-input" type="text" maxlength="2">
+                                <span class="time-colon">:</span>
+                                <input class="minute-input" id="left-minute-input" type="text" value="00" maxlength="2">
+                                <select class="period-input" id="left-period-input">
+                                    <option>AM</option>
+                                    <option>PM</option>
+                                </select>
+                            </div>
+                            <label class="time-label">To</label>
+                            <div class="time-input-wrapper" id="right-time-input-wrapper">
+                                <input class="hour-input" id="right-hour-input" type="text" maxlength="2">
+                                <span class="time-colon">:</span>
+                                <input class="minute-input" id="right-minute-input" type="text" value="00" maxlength="2">
+                                <select class="period-input" id="right-period-input">
+                                    <option>AM</option>
+                                    <option>PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="class-submit-wrapper">
+                <button id="class-cancel-button">Cancel</button>
+                <button id="class-submit-button">Submit</button>
+            </div>
+        </div>
+        <div id="calendar-wrapper"></div>
+        <div id="create-student-wrapper">
+            <div id="create-student-container">
+                <div id="student-details-wrapper">
+                    <div id="student-section-1">
+                        <span id="student-icon"><i class="fas fa-user-graduate"></i></span>
+                        <div id="student-sub-section">
+                            <label for="first-name-input">First Name</label>
+                            <input type="text" id="first-name-input"/>
+                        </div>
+                        <label for="school-input">School</label>
+                        <input type="text" id="school-input"/>
+                        <label for="address-input">Address</label>
+                        <input type="text" id="address-input"/>
+                        <div id="address-wrapper">
+                            <div>
+                                <label for="state-input">State</label>
+                                <input type="text" id="state-input"/>
+                            </div>
+                            <div>
+                                <label for="zip-code-input">Zip Code</label>
+                                <input type="text" id="zip-code-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="student-section-2">
+                        <label for="last-name-input">Last Name</label>
+                        <input type="text" id="last-name-input"/>
+                        <label for="grade-input">Grade</label>
+                        <select id="grade-input">
+                            <option>PRE-K</option>
+                            <option>Kindergarten</option>
+                            <option>1st Grade</option>
+                            <option>2nd Grade</option>
+                            <option>3rd Grade</option>
+                            <option>4th Grade</option>
+                            <option>5th Grade</option>
+                            <option>6th Grade</option>
+                            <option>7th Grade</option>
+                            <option>8th Grade</option>
+                            <option>9th Grade</option>
+                            <option>10th Grade</option>
+                            <option>11th Grade</option>
+                            <option>12th Grade</option>
+                        </select>
+                        <label for="city-input">City</label>
+                        <input type="text" id="city-input"/>
+                        <label for="phone-number-input">Phone Number</label>
+                        <input type="text" id="phone-number-input"/>
+                    </div>
+                </div>
+            </div>
+            <div id="student-submit-wrapper">
+                <button id="student-cancel-button">Cancel</button>
+                <button id="student-submit-button">Submit</button>
+            </div>
+        </div>
+
+        <div id="student-link-wrapper"></div>
+    </div>
+</body>
+</html>

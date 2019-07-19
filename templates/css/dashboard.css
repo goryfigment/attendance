@@ -1,0 +1,845 @@
+/*HEADER*/
+#header-wrapper {
+    display: flex;
+}
+
+#icon-wrapper {
+    padding: 20px 60px;
+    font-size: 26px;
+    color: #00adff;
+    cursor: pointer;
+    min-width: 117px;
+}
+
+#a-logo {
+    margin-left: -17px;
+    color: white;
+    font-size: 20px;
+}
+
+#ttendance-logo {
+    margin-left: 6px;
+    font-size: 20px;
+}
+
+#nav-wrapper {
+    margin-left: auto;
+    padding: 0 30px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-links {
+    cursor: pointer;
+    padding: 10px 0;
+    margin: 0 10px;
+    transition: all 150ms ease-out;
+    line-height: 67px;
+}
+
+.nav-links:hover {
+    color: #37d1ff;
+}
+
+#delete-wrapper {
+    display: none;
+}
+
+#search-wrapper {
+    padding-right: 10px;
+    white-space: nowrap;
+    width: 100%;
+    max-height: 42px;
+    margin: 15px 10px;
+    border: 1px solid #8c8c8c;
+    transition: all 150ms ease-out;
+}
+
+#search-wrapper:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
+}
+
+::-webkit-input-placeholder {
+    color: #989898;
+}
+
+#search-wrapper:hover ::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+#search-wrapper:hover #search-icon {
+    color: #ffffff;
+}
+
+::-webkit-input-placeholder {
+    transition: all 150ms ease-out;
+}
+
+#search-icon {
+    padding: 12px;
+    cursor: pointer;
+    color: #747474;
+    transition: all 150ms ease-out;
+}
+
+#search-input {
+    background-color: transparent;
+    width: 456px;
+    outline: none;
+    border: none;
+    border-radius: 1px;
+    height: 40px;
+    line-height: 20px;
+    padding: 0 10px;
+    color: #ffffff;
+}
+/*HEADER*/
+
+/* ACCOUNT WRAPPER */
+
+#account-wrapper {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 58px;
+    left: 5px;
+    width: 200px;
+    background: #242323;
+    display: none;
+    white-space: normal;
+}
+
+#account-wrapper div {
+    padding: 20px 30px;
+}
+
+#drag-drop-text {
+    color: white;
+    font-size: 28px;
+    margin-left: 50px;
+}
+
+#logout-icon {
+    margin-right: 10px;
+}
+
+.account-links {
+    padding: 0 13px;
+    cursor: pointer;
+}
+
+.account-active #account-link {
+    border-bottom: 2px solid #00adff;
+}
+
+.account-active #account-wrapper {
+    display: block;
+}
+
+.account-links:hover {
+    background-color: #1c1c1c;
+}
+
+#username {
+    color: #a1a1a1;
+    font-size: 13px;
+    display: block;
+}
+/* ACCOUNT WRAPPER */
+
+/* MAIN WRAPPER */
+#main-wrapper {
+    display: flex;
+    height: calc(100vh - 103px);
+}
+/* MAIN WRAPPER */
+
+/* SIDEBAR */
+#side-bar-wrapper {
+    min-width: 200px;
+    border: 1px solid #3f3f3f;
+    height: 100%;
+    margin: 0 0 0 10px;
+    padding: 10px;
+}
+
+#side-bar-wrapper h2 {
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Karla', Arial, Helvetica, sans-serif, Georgia, serif;
+}
+
+.roster-wrapper {
+    background: #202020;
+    padding: 6px 0;
+    margin-bottom: 13px;
+    border: 1px solid #5d5d5d;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.roster-wrapper:hover {
+    background: #131313;
+    padding: 9px;
+    border: 1px solid #000;
+}
+
+.roster-wrapper.active, .class.active {
+    background: #131313;
+    padding: 9px;
+    border: 1px solid #000;
+}
+
+#roster-header-wrapper {
+    display: flex;
+}
+
+.total-students {
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+#create-student-button {
+    padding: 8px;
+    margin-left: auto;
+    color: #089708;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+#class-wrapper {
+    text-align: center;
+}
+
+#empty-class-icon {
+    font-size: 54px;
+    color: #44c3ff;
+}
+
+#empty-class-message {
+    color: white;
+    font-size: 15px;
+}
+
+#create-class-button {
+    margin: 10px auto;
+    border: #176e11 solid 1px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 1px;
+    background: transparent;
+    color: white;
+    width: 177px;
+    font-family: 'Karla', Arial, Helvetica, sans-serif, Georgia, serif;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.class-header-wrapper #create-class-button:hover, #create-student-button:hover {
+    color: #00cf23 !important;
+}
+
+#add-class-icon {
+    margin-left: 37px;
+}
+
+.class-header-wrapper {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.class-header-wrapper #create-class-button {
+    width: 33px;
+    margin: 0 0 0 auto;
+    border: none;
+    padding: 5px;
+    color: #089708;
+}
+
+.class-header-wrapper #add-class-icon {
+    margin: 0;
+}
+
+.class {
+    background: #202020;
+    padding: 8px 6px;
+    border: 1px solid #5d5d5d;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 7px 0;
+}
+
+.class:hover {
+    background: #131313;
+    padding: 9px;
+    border: 1px solid #000;
+}
+
+.class-detail-wrapper {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.class-name {
+    font-size: 16px;
+    display: inline-block;
+}
+
+.class-time {
+    font-size: 10px;
+    margin-left: auto;
+    line-height: 16px;
+    color: #c3ebff;
+}
+
+.class-time-wrapper {
+    font-size: 11px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.today.active-day {
+    color: #9aff9a;
+}
+
+.inactive-day {
+    color: #f79696;
+}
+
+.today.inactive-day {
+    color: #ff7575;
+}
+/* SIDEBAR */
+
+/* BODY WRAPPER */
+#body-wrapper {
+    width: 100%;
+    padding: 10px;
+    height: 100%;
+}
+
+#class-header-wrapper {
+    display: flex;
+}
+
+#class-name {
+    font-size: 33px;
+    line-height: 61px;
+}
+
+#class-time {
+    text-align: center;
+    font-size: 17px !important;
+    display: block;
+}
+
+#calendar-button {
+    cursor: pointer;
+    margin: 0 auto;
+    font-size: 36px;
+    transition: all .2s ease;
+}
+
+#calendar-button:hover {
+    color: #ffffff;
+}
+
+#link-student-button {
+    font-size: 23px;
+    line-height: 61px;
+    border: #535252 solid 1px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all .2s ease;
+}
+
+#link-student-button:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
+}
+
+#calendar-icon {
+    display: inline-block;
+    font-size: 30px;
+}
+/* BODY WRAPPER */
+
+/* ATTENDANCE TABLE */
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+table thead {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+table tbody tr {
+    text-align: center;
+    height: 52px;
+    background: #151515;
+    color: #87d0fb;;
+}
+
+table tbody tr td {
+    height: 65px;
+}
+
+.attendance-column {
+    cursor: pointer;
+    width: 275px;
+}
+
+#empty-roster-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 45px);
+    align-items: center;
+}
+
+#empty-roster-icon {
+    font-size: 170px;
+    margin: 50px 0 0 0;
+}
+
+#empty-roster-description {
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#empty-roster-description:hover {
+    cursor: pointer;
+    font-size: 18px;
+}
+/* ATTENDANCE TABLE */
+
+/*OVERLAY*/
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100vh;
+    background: #000000c7;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #ffffff;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#overlay.active {
+    display: flex;
+}
+
+.class #create-class-wrapper {
+    display: block;
+}
+
+.student #create-student-wrapper {
+    display: block;
+}
+
+.student-link #student-link-wrapper {
+    display: block;
+}
+
+#create-class-wrapper {
+    display: none;
+}
+
+.calendar #calendar-wrapper {
+    display: block;
+}
+
+#calendar-wrapper {
+    display: none;
+}
+
+#overlay label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+#overlay input {
+    background-color: #a4bde3;
+    border: none;
+    font-size: 15px;
+    outline: none;
+    font-weight: 400;
+    letter-spacing: -0.025rem;
+    line-height: 1.25rem;
+    margin: 2px 2px 2px 0;
+    color: #000000;
+    padding: 10px;
+    width: 250px;
+}
+
+#overlay button {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    padding: 11px 22px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#overlay button:hover {
+    filter: brightness(110%);
+}
+
+#overlay select {
+    background: #1768ff;
+    border: none;
+    outline: none;
+    padding: 7px;
+    color: white;
+    font-weight: 400;
+    border-radius: 2px;
+    font-size: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.19);
+}
+/*OVERLAY*/
+
+/*CREATE CLASS*/
+#create-class-container {
+    background: #578ee1;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px;
+}
+
+#class-name-input {
+    width: 350px !important;
+}
+
+#class-details-wrapper {
+    position: relative;
+    border: dashed;
+    width: 485px;
+}
+
+#create-class-container #class-icon {
+    font-size: 71px;
+    position: absolute;
+    top: -46px;
+    left: 16px;
+}
+
+#class-section-1 {
+    padding: 20px 0 0 87px;
+}
+
+#class-section-2, #class-section-3 {
+    margin: 10px;
+}
+
+#day-wrapper {
+    text-align: center;
+}
+
+#class-section-3 input {
+    width: 25px;
+    height: 12px;
+}
+
+#time-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-label {
+    margin: 0 5px 0 0 !important;
+}
+
+.time-input-wrapper {
+    margin-left: 2px;
+}
+
+.hour-input, .minute-input {
+    width: 16px;
+}
+
+.minute-input {
+    margin-left: -3px;
+}
+
+#left-time-input-wrapper .time-colon {
+    margin-left: -3.5px;
+}
+
+#class-submit-wrapper {
+    width: 489.8px;
+    padding: 10px;
+    text-align: right;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #72abff;
+}
+
+#class-cancel-button, #class-submit-button {
+    color: white;
+    background: #1e82e7;
+}
+
+#left-time-input-wrapper {
+    margin-right: 10px;
+}
+/*CREATE CLASS*/
+
+/*CREATE STUDENT*/
+#create-student-wrapper {
+    display: none;
+    position: relative;
+}
+
+#create-student-wrapper input {
+    background-color: #999ce3;
+}
+
+#create-student-container {
+    background: #6c1ee9;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px;
+}
+
+#class-student-wrapper {
+    position: relative;
+    border: dashed;
+    width: 485px;
+}
+
+#create-student-container #student-icon {
+    font-size: 71px;
+    position: absolute;
+    top: -46px;
+    left: 16px;
+}
+
+#student-details-wrapper {
+    display: flex;
+}
+
+#student-details-wrapper label {
+    margin: 10px 0;
+}
+
+#student-details-wrapper select {
+    background: #320090;
+    width: 270px;
+    height: 44px;
+}
+
+#student-section-1 {
+    margin: 0 30px;
+}
+
+#address-wrapper {
+    display: flex;
+}
+
+#address-wrapper div:nth-child(1) {
+    margin-right: 17px;
+}
+
+#first-name-input {
+    width: 202px !important;
+}
+
+#state-input {
+    width: 75px !important;
+}
+
+#zip-code-input {
+    width: 135px !important;
+}
+
+#student-sub-section {
+    margin-left: 50px;
+}
+
+#student-submit-wrapper {
+    width: 641.8px;
+    padding: 10px;
+    text-align: right;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #8538ff;
+}
+
+#student-cancel-button, #student-submit-button {
+    color: white;
+    background: #6003d9;
+}
+/*CREATE STUDENT*/
+
+/*STUDENT LINK*/
+#student-link-wrapper {
+    display: none;
+    position: relative;
+}
+
+#student-link-container {
+    background: #090909;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px;
+}
+
+#student-link-wrapper {
+    position: relative;
+    width: 550px;
+}
+
+#student-link-container #link-icon {
+    color: #2694f5;
+    font-size: 64px;
+    position: absolute;
+    top: -25px;
+    left: 16px;
+}
+
+#student-link-section-1 {
+    padding: 0 0 0 75px;
+    font-size: 26px;
+}
+
+#student-roster-table tbody tr {
+    transition: all .2s ease;
+    background: #000000;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#student-roster-table tbody td {
+    height: 20px;
+    position: relative;
+}
+
+.roster-check {
+    position: absolute;
+    left: 15px;
+    top: 13px;
+}
+
+.roster-check .checkbox-input:checked + .check-box-wrapper .check-box {
+    background: #007d0a;
+    border-color: #0d7500;
+}
+
+#student-link-section-3 {
+    padding: 10px;
+    border: 1px solid white;
+    margin: 10px 0;
+    border-radius: 2px;
+    position: relative;
+}
+
+#student-link-section-3 h2 {
+    font-family: 'Karla', Arial, Helvetica, sans-serif, Georgia, serif;
+    margin: 0;
+    font-size: 16px;
+    position: absolute;
+    top: -10px;
+    background: #090909;
+    padding: 0 8px;
+}
+
+#student-link-submit-wrapper {
+    width: 529.8px;
+    padding: 10px;
+    text-align: right;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #000;
+}
+
+#student-link-cancel-button, #student-link-submit-button {
+    color: white;
+    background: #1e1e1e;
+}
+/*STUDENT LINK*/
+
+/*CHECKBOX*/
+.check-box-wrapper {
+    user-select: none;
+    cursor: pointer;
+	padding: 0 4px;
+    display: inline !important;
+}
+
+.check-box-wrapper span {
+	display: inline-block;
+	vertical-align: middle;
+	transform: translate3d(0, 0, 0);
+}
+
+.check-box-wrapper .check-box {
+	position: relative;
+    width: 18px;
+    background: #ffffff;
+    height: 18px;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #d1c9c9;
+    transition: all .2s ease;
+}
+
+.check-box-wrapper .check-box svg {
+	position: absolute;
+	top: 4px;
+	left: 3px;
+	fill: none;
+	stroke: #FFFFFF;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 16px;
+	stroke-dashoffset: 16px;
+	transition: all .3s ease;
+	transition-delay: .1s;
+	transform: translate3d(0, 0, 0);
+}
+
+.check-box-wrapper .check-box-label {
+	padding-left: 3px;
+    font-size: 14px;
+}
+
+.check-box-wrapper:hover .check-box {
+	border-color: #506EEC;
+}
+
+.checkbox-input:checked + .check-box-wrapper .check-box {
+	background: #506EEC;
+	border-color: #506EEC;
+	animation: wave .4s ease;
+}
+
+.checkbox-input:checked + .check-box-wrapper .check-box svg {
+	stroke-dashoffset: 0;
+}
+
+.checkbox-input:checked + .check-box-wrapper .check-box:before {
+	transform: scale(3.5);
+	opacity: 0;
+	transition: all .6s ease;
+}
+
+@keyframes wave {
+	50% {
+		transform: scale(0.9);
+	}
+}
+/*CHECKBOX*/

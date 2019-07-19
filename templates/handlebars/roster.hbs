@@ -1,0 +1,25 @@
+<div id="roster-header">
+    <h1>Roster</h1>
+    <table id="roster-table">
+        <thead>
+            <tr>
+                <th class="sortable" scope="col">Name</th>
+                <th class="sortable" scope="col">School</th>
+                <th class="sortable" scope="col">Grade</th>
+                <th class="sortable" scope="col">Address</th>
+                <th class="sortable" scope="col">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+                <tr>
+                    <td class="student-name">{{first_name}} {{last_name}}</td>
+                    <td>{{school}}</td>
+                    <td>{{grade}}</td>
+                    <td>{{address}}</td>
+                    <td>{{phone_number}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

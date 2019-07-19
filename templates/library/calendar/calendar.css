@@ -1,0 +1,217 @@
+/*CALENDAR*/
+#overlay {
+    background: #00000042;
+}
+
+#calendar-wrapper {
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(#6b2ad2, #6c460c);
+}
+
+#calendar-header {
+    display: flex;
+    align-items: center;
+    background: #1f6083;
+    border-radius: 3px 3px 0 0;
+    padding: 7px;
+}
+
+#calendar-exit {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+#calendar-container {
+    display: flex;
+}
+
+.month-wrapper {
+    width: 549px;
+}
+
+.month-header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.side-arrow {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.month, .year {
+    font-size: 26px;
+}
+
+.left-arrow {
+    position: absolute;
+    top: 19px;
+    left: 12px;
+    transition: 0.2s ease all;
+}
+
+.right-arrow[data-month="0"] {
+    opacity: 0.3;
+}
+
+.right-arrow {
+    position: absolute;
+    top: 19px;
+    right: 12px;
+    transition: 0.2s ease all;
+}
+
+.month-calendar {
+    display: block;
+}
+
+.day-of-week {
+    display: block;
+}
+
+.month-calendar tr {
+    height: 50px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.day-of-week tr th {
+    font-weight: 500;
+}
+
+.month-calendar tbody {
+    display: block;
+    color: #eaeaea;
+}
+
+#currentDay {
+    background: #444924;
+}
+
+.nonSelectable {
+    color: #878787;
+    cursor: default;
+}
+
+.hovered {
+    background: #474747;
+}
+
+#calendar-wrapper tbody td:not(.nonSelectable) {
+    cursor: pointer;
+    transition: all .2s ease;
+    position: relative;
+}
+
+#calendar-wrapper tbody td:not(.nonSelectable):hover {
+    font-size: 24px;
+}
+
+.right-arrow:hover, .left-arrow:hover {
+    font-size: 20px;
+}
+
+.first-selected-date, .last-selected-date {
+    background: #2d6387 !important;
+}
+
+.in-between {
+    background: #2d4f876e;
+}
+
+#calendar-input-wrapper {
+    display: flex;
+}
+
+#calendar-input-wrapper .calendar-input-container {
+    display: flex;
+    padding: 5px 0;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    font-size: 14px;
+}
+
+#calendar-input-wrapper input {
+    background: transparent;
+    outline: none;
+    border: none;
+    padding: 2px 1.5px;
+    color: #ffffff;
+}
+
+.from-to-text {
+    margin-right: 2px;
+}
+
+#left-time-input-wrapper .time-colon {
+    margin-left: -3.5px;
+}
+
+.time-colon {
+    margin-left: -0.5px;
+}
+
+#left-date-input-wrapper .date-slash {
+    margin-left: -3.5px;
+}
+
+.date-slash {
+    margin-left: -1px;
+}
+
+#calendar-button-wrapper {
+    display: flex;
+    border-top: #5e5e5e solid 1.60px;
+    height: 35px;
+    align-items: center;
+}
+
+#calendar-button-wrapper button {
+    outline: none;
+    color: #f4f4f4;
+    border-radius: 2px;
+    padding: 3px 6px;
+    cursor: pointer;
+    border: solid 2px #939393;
+}
+
+#calendar-button-wrapper #calendar-reset {
+    background: #ae3434;
+    margin: 0 72px;
+}
+
+#calendar-button-wrapper #calendar-submit {
+    background: #216221;
+    margin: 0 45px 0 auto;
+}
+
+#calendar-button-wrapper #calendar-reset:hover {
+    background: #c72b2b;
+    border-color: #d7d7d7;
+}
+
+#calendar-button-wrapper #calendar-submit:hover {
+    background: #066c06;
+    border-color: #d7d7d7;
+}
+
+.cal-check {
+    display: none;
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    color: #59ce59;
+    font-size: 16px !important;
+}
+
+.checked .cal-check {
+    display: inline-block;
+}
+/*CALENDAR*/
