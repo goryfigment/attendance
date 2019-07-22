@@ -13,10 +13,8 @@ var monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July
 
 function init() {
     var $sideBarWrapper = $('#side-bar-wrapper');
-    if(globals.classes.length) {
-        $sideBarWrapper.empty();
-        $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
-    }
+    $sideBarWrapper.empty();
+    $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
 
     var $class = $($sideBarWrapper.find('.class')[0]);
     $class.addClass('active');

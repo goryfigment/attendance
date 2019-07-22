@@ -14,19 +14,13 @@ from attendance.models import User
 from attendance.settings_secret import GMAIL, GMAIL_PASSWORD
 
 
-@data_required(['username', 'email', 'code', 'password', 'first_name', 'last_name'], 'POST')
+@data_required(['username', 'email', 'password', 'first_name', 'last_name'], 'POST')
 def register(request):
     username = request.POST['username'].strip().lower()
-    code = str(request.POST['code'].strip())
     email = request.POST['email'].strip().lower()
     password = request.POST['password']
     first_name = request.POST['first_name']
     last_name = request.POST['last_name']
-
-    # Check code
-    if not code:
-        data = {'success': False,  'error_msg': 'Must have an access code.'}
-        return HttpResponseBadRequest(json.dumps(data), 'application/json')
 
     # Check first name
     if not len(first_name):
@@ -46,10 +40,6 @@ def register(request):
     # Check Email
     if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
         data = {'success': False,  'error_msg': 'Invalid email.'}
-        return HttpResponseBadRequest(json.dumps(data), 'application/json')
-
-    if code == '' or int(code) != 729:
-        data = {'success': False,  'error_msg': 'Invalid access code.'}
         return HttpResponseBadRequest(json.dumps(data), 'application/json')
 
     # Check if valid password: Must be 8 or more characters and contain a combo of letters and numbers

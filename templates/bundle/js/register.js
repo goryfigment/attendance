@@ -10623,7 +10623,6 @@ $(document).ready(function() {
         var username = $('#username').val();
         var password = $('#password').val();
         var email = $('#email').val();
-        var code = String($('#code').val());
         var firstName = $('#first-name').val();
         var lastName = $('#last-name').val();
 
@@ -10660,7 +10659,6 @@ $(document).ready(function() {
         var postData = {
             'username': username,
             'email': email,
-            'code': code,
             'password': password,
             'first_name': firstName,
             'last_name': lastName
@@ -10679,18 +10677,8 @@ $(document).ready(function() {
                 console.log(JSON.stringify(response.responseJSON));
                 var error = response.responseJSON['error_msg'];
 
-                if (error == 'Must have an access code.') {
-                    var $error = $('.error.code');
-                    $error.text(error);
-                    $error.show();
-                } else if(error == 'Invalid access code.') {
-                    $error = $('.error.code');
-                    $error.text(error);
-                    $error.show();
-                }
-
                 if (error == 'Username must be between 3 to 15 characters.') {
-                    $error = $('.error.code');
+                    $error = $('.error.username');
                     $error.text(error);
                     $error.show();
                 } else if(error == 'Username exists.') {

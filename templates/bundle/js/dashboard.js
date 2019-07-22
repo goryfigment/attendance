@@ -11490,10 +11490,8 @@ var monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July
 
 function init() {
     var $sideBarWrapper = $('#side-bar-wrapper');
-    if(globals.classes.length) {
-        $sideBarWrapper.empty();
-        $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
-    }
+    $sideBarWrapper.empty();
+    $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
 
     var $class = $($sideBarWrapper.find('.class')[0]);
     $class.addClass('active');
@@ -12977,71 +12975,77 @@ module.exports = function(year, month, day) {
 var Handlebars = __webpack_require__(5);
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {});
-
-  return "        <div class=\"class\" data-index=\""
-    + alias2(alias1((data && data.index), depth0))
-    + "\" data-id=\""
-    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
-    + "\">\r\n            <div class=\"class-detail-wrapper\">\r\n                <div class=\"class-name\">"
-    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
-    + "</div>\r\n                <div class=\"class-time\">"
-    + alias2(__default(__webpack_require__(13)).call(alias3,(depth0 != null ? depth0.from_date : depth0),":00","",{"name":"replaceAll","hash":{},"data":data}))
-    + " - "
-    + alias2(__default(__webpack_require__(13)).call(alias3,(depth0 != null ? depth0.to_date : depth0),":00","",{"name":"replaceAll","hash":{},"data":data}))
-    + "</div>\r\n            </div>\r\n            <div class=\"class-time-wrapper\">\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.monday : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.program(4, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.tuesday : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.program(8, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.wednesday : depth0),{"name":"if","hash":{},"fn":container.program(10, data, 0),"inverse":container.program(12, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.thursday : depth0),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.program(16, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.friday : depth0),{"name":"if","hash":{},"fn":container.program(18, data, 0),"inverse":container.program(20, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.saturday : depth0),{"name":"if","hash":{},"fn":container.program(22, data, 0),"inverse":container.program(24, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n                "
-    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.sunday : depth0),{"name":"if","hash":{},"fn":container.program(26, data, 0),"inverse":container.program(28, data, 0),"data":data})) != null ? stack1 : "")
-    + "\r\n            </div>\r\n        </div>\r\n";
-},"2":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Mon</span>";
-},"4":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Mon</span>";
-},"6":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Tue</span>";
-},"8":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Tue</span>";
-},"10":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Wed</span>";
-},"12":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Wed</span>";
-},"14":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Thu</span>";
-},"16":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Thu</span>";
-},"18":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Fri</span>";
-},"20":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Fri</span>";
-},"22":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Sat</span>";
-},"24":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Sat</span>";
-},"26":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"active-day\">Sun</span>";
-},"28":function(container,depth0,helpers,partials,data) {
-    return "<span class=\"inactive-day\">Sun</span>";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div class=\"roster-wrapper\">\r\n    <div id=\"roster-header-wrapper\">\r\n        <h2>Roster</h2>\r\n        <button id=\"create-student-button\"><span><i class=\"fas fa-user-plus\"></i></span></button>\r\n    </div>\r\n    <div class=\"total-students\" data-total=\""
+  return "    <div class=\"roster-wrapper\">\r\n        <div id=\"roster-header-wrapper\">\r\n            <h2>Roster</h2>\r\n            <button id=\"create-student-button\"><span><i class=\"fas fa-user-plus\"></i></span></button>\r\n        </div>\r\n        <div class=\"total-students\" data-total=\""
     + alias2(alias1((depth0 != null ? depth0.student_length : depth0), depth0))
     + "\">Total Students: "
     + alias2(alias1((depth0 != null ? depth0.student_length : depth0), depth0))
-    + "</div>\r\n</div>\r\n\r\n<div class=\"class-header-wrapper\">\r\n    <h2>Class</h2>\r\n    <button id=\"create-class-button\"><span id=\"add-class-icon\"><i class=\"fas fa-plus\"></i></span></button>\r\n</div>\r\n<div id=\"class-wrapper\">\r\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.classes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>";
+    + "</div>\r\n    </div>\r\n\r\n    <div class=\"class-header-wrapper\">\r\n        <h2>Class</h2>\r\n        <button id=\"create-class-button\"><span id=\"add-class-icon\"><i class=\"fas fa-plus\"></i></span></button>\r\n    </div>\r\n    <div id=\"class-wrapper\">\r\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.classes : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\r\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {});
+
+  return "            <div class=\"class\" data-index=\""
+    + alias2(alias1((data && data.index), depth0))
+    + "\" data-id=\""
+    + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
+    + "\">\r\n                <div class=\"class-detail-wrapper\">\r\n                    <div class=\"class-name\">"
+    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
+    + "</div>\r\n                    <div class=\"class-time\">"
+    + alias2(__default(__webpack_require__(13)).call(alias3,(depth0 != null ? depth0.from_date : depth0),":00","",{"name":"replaceAll","hash":{},"data":data}))
+    + " - "
+    + alias2(__default(__webpack_require__(13)).call(alias3,(depth0 != null ? depth0.to_date : depth0),":00","",{"name":"replaceAll","hash":{},"data":data}))
+    + "</div>\r\n                </div>\r\n                <div class=\"class-time-wrapper\">\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.monday : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.program(5, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.tuesday : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.program(9, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.wednesday : depth0),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.program(13, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.thursday : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.program(17, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.friday : depth0),{"name":"if","hash":{},"fn":container.program(19, data, 0),"inverse":container.program(21, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.saturday : depth0),{"name":"if","hash":{},"fn":container.program(23, data, 0),"inverse":container.program(25, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                    "
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.sunday : depth0),{"name":"if","hash":{},"fn":container.program(27, data, 0),"inverse":container.program(29, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n                </div>\r\n            </div>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Mon</span>";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Mon</span>";
+},"7":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Tue</span>";
+},"9":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Tue</span>";
+},"11":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Wed</span>";
+},"13":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Wed</span>";
+},"15":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Thu</span>";
+},"17":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Thu</span>";
+},"19":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Fri</span>";
+},"21":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Fri</span>";
+},"23":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Sat</span>";
+},"25":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Sat</span>";
+},"27":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"active-day\">Sun</span>";
+},"29":function(container,depth0,helpers,partials,data) {
+    return "<span class=\"inactive-day\">Sun</span>";
+},"31":function(container,depth0,helpers,partials,data) {
+    return "    <h2>Class</h2>\r\n    <div id=\"class-wrapper\">\r\n        <span id=\"empty-class-icon\"><i class=\"fas fa-lock\"></i> <div id=\"empty-class-message\">Oops looks like you don't have any classes!</div></span>\r\n    </div>\r\n    <button id=\"create-class-button\">Create a class <span id=\"add-class-icon\"><i class=\"fas fa-plus\"></i></span></button>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = ((stack1 = (depth0 != null ? depth0["class"] : depth0)) != null ? stack1.roster : stack1)) != null ? stack1.length : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(31, data, 0),"data":data})) != null ? stack1 : "");
 },"useData":true});
 
 /***/ }),
@@ -13162,7 +13166,7 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "\" data-type=\"columns\" class=\"checkbox-input column-filter\" style=\"display: none\" value=\""
     + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
     + "\" "
-    + alias2(__default(__webpack_require__(51)).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.id : depth0),{"name":"rosterCheck","hash":{},"data":data}))
+    + alias2(__default(__webpack_require__(50)).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.id : depth0),{"name":"rosterCheck","hash":{},"data":data}))
     + ">\r\n                                    <label for=\"roster-checkbox-"
     + alias2(alias1((depth0 != null ? depth0.id : depth0), depth0))
     + "\" class=\"check-box-wrapper\">\r\n                                        <span class=\"check-box\">\r\n                                            <svg width=\"12px\" height=\"10px\">\r\n                                                <polyline points=\"1.5 6 4.5 9 10.5 1\"></polyline>\r\n                                            </svg>\r\n                                        </span>\r\n                                    </label>\r\n                                </span>\r\n                                "
@@ -13179,8 +13183,7 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 },"useData":true});
 
 /***/ }),
-/* 50 */,
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $ = __webpack_require__(0);

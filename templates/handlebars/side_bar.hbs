@@ -1,31 +1,39 @@
-<div class="roster-wrapper">
-    <div id="roster-header-wrapper">
-        <h2>Roster</h2>
-        <button id="create-student-button"><span><i class="fas fa-user-plus"></i></span></button>
-    </div>
-    <div class="total-students" data-total="{{student_length}}">Total Students: {{student_length}}</div>
-</div>
-
-<div class="class-header-wrapper">
-    <h2>Class</h2>
-    <button id="create-class-button"><span id="add-class-icon"><i class="fas fa-plus"></i></span></button>
-</div>
-<div id="class-wrapper">
-    {{#each classes}}
-        <div class="class" data-index="{{@index}}" data-id="{{id}}">
-            <div class="class-detail-wrapper">
-                <div class="class-name">{{name}}</div>
-                <div class="class-time">{{replaceAll from_date ':00' ''}} - {{replaceAll to_date ':00' ''}}</div>
-            </div>
-            <div class="class-time-wrapper">
-                {{#if monday}}<span class="active-day">Mon</span>{{else}}<span class="inactive-day">Mon</span>{{/if}}
-                {{#if tuesday}}<span class="active-day">Tue</span>{{else}}<span class="inactive-day">Tue</span>{{/if}}
-                {{#if wednesday}}<span class="active-day">Wed</span>{{else}}<span class="inactive-day">Wed</span>{{/if}}
-                {{#if thursday}}<span class="active-day">Thu</span>{{else}}<span class="inactive-day">Thu</span>{{/if}}
-                {{#if friday}}<span class="active-day">Fri</span>{{else}}<span class="inactive-day">Fri</span>{{/if}}
-                {{#if saturday}}<span class="active-day">Sat</span>{{else}}<span class="inactive-day">Sat</span>{{/if}}
-                {{#if sunday}}<span class="active-day">Sun</span>{{else}}<span class="inactive-day">Sun</span>{{/if}}
-            </div>
+{{#if class.roster.length}}
+    <div class="roster-wrapper">
+        <div id="roster-header-wrapper">
+            <h2>Roster</h2>
+            <button id="create-student-button"><span><i class="fas fa-user-plus"></i></span></button>
         </div>
-    {{/each}}
-</div>
+        <div class="total-students" data-total="{{student_length}}">Total Students: {{student_length}}</div>
+    </div>
+
+    <div class="class-header-wrapper">
+        <h2>Class</h2>
+        <button id="create-class-button"><span id="add-class-icon"><i class="fas fa-plus"></i></span></button>
+    </div>
+    <div id="class-wrapper">
+        {{#each classes}}
+            <div class="class" data-index="{{@index}}" data-id="{{id}}">
+                <div class="class-detail-wrapper">
+                    <div class="class-name">{{name}}</div>
+                    <div class="class-time">{{replaceAll from_date ':00' ''}} - {{replaceAll to_date ':00' ''}}</div>
+                </div>
+                <div class="class-time-wrapper">
+                    {{#if monday}}<span class="active-day">Mon</span>{{else}}<span class="inactive-day">Mon</span>{{/if}}
+                    {{#if tuesday}}<span class="active-day">Tue</span>{{else}}<span class="inactive-day">Tue</span>{{/if}}
+                    {{#if wednesday}}<span class="active-day">Wed</span>{{else}}<span class="inactive-day">Wed</span>{{/if}}
+                    {{#if thursday}}<span class="active-day">Thu</span>{{else}}<span class="inactive-day">Thu</span>{{/if}}
+                    {{#if friday}}<span class="active-day">Fri</span>{{else}}<span class="inactive-day">Fri</span>{{/if}}
+                    {{#if saturday}}<span class="active-day">Sat</span>{{else}}<span class="inactive-day">Sat</span>{{/if}}
+                    {{#if sunday}}<span class="active-day">Sun</span>{{else}}<span class="inactive-day">Sun</span>{{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <h2>Class</h2>
+    <div id="class-wrapper">
+        <span id="empty-class-icon"><i class="fas fa-lock"></i> <div id="empty-class-message">Oops looks like you don't have any classes!</div></span>
+    </div>
+    <button id="create-class-button">Create a class <span id="add-class-icon"><i class="fas fa-plus"></i></span></button>
+{{/if}}
