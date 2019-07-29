@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                     {{#each students}}
-                        <tr class="roster-link-student" data-id="{{id}}">
+                        <tr class="roster-link-student {{rosterCheck id}}" data-id="{{id}}">
                             <td class="student-name">
                                 <span class="roster-check">
                                     <input type="checkbox" id="roster-checkbox-{{id}}" data-type="columns" class="checkbox-input column-filter" style="display: none" value="{{id}}" {{rosterCheck id}}>
@@ -26,6 +26,8 @@
                                     </label>
                                 </span>
                                 {{first_name}} {{last_name}}
+                                <span class="remove-tag">Removing</span>
+                                <span class="add-tag">Adding</span>
                             </td>
                         </tr>
                     {{/each}}

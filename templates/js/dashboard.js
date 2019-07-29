@@ -25,8 +25,11 @@ function init() {
     $bodyWrapper.append(classTemplate({
         'class': globals.classes[$class.attr('data-index')],
         'dateString': dayLabels[d.getDay()] + ' ' + monthLabels[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(),
-        'time': globals.start_of_day
+        'time': globals.start_of_day,
+        'student_length': globals.student_length
     }));
+
+    $('.active-day[data-day="' + String(d.getDay()) + '"]').addClass('today');
 }
 
 function addZeroFillers(number) {
@@ -142,7 +145,7 @@ $(document).ready(function() {
                 $('#class-cancel-button').click();
                 var $sideBarWrapper = $('#side-bar-wrapper');
                 $sideBarWrapper.empty();
-                $sideBarWrapper.append(sideBarTemplate(globals.classes));
+                $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
             }
         });
     });
@@ -158,7 +161,8 @@ $(document).ready(function() {
         $bodyWrapper.append(classTemplate({
             'class': globals.classes[$class.attr('data-index')],
             'dateString': dayLabels[d.getDay()] + ' ' + monthLabels[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(),
-            'time': globals.start_of_day
+            'time': globals.start_of_day,
+            'student_length': globals.student_length
         }));
     });
     //CREATE CLASS//
@@ -218,6 +222,7 @@ $(document).ready(function() {
             success: function (response) {
                 console.log(JSON.stringify(response));
                 globals.students = response['students'];
+                globals.student_length = globals.students.length.toString();
                 $('#student-cancel-button').click();
 
                 var $rosterWrapper = $('.roster-wrapper');
@@ -227,13 +232,18 @@ $(document).ready(function() {
                     $bodyWrapper.append(rosterTemplate(globals.students));
                 }
 
-                $('.total-students').text('Total Students: ' + globals.students.length.toString());
+                $('.total-students').text('Total Students: ' + globals.student_length);
             }
         });
     });
     //CREATE STUDENT//
 
     //LINK STUDENT//
+    $(document).on('click', '#empty-student-description', function (e) {
+        e.stopPropagation();
+        $('#create-student-button').click();
+    });
+
     $(document).on('click', '#empty-roster-description', function (e) {
         e.stopPropagation();
         $('#link-student-button').click();
@@ -256,6 +266,23 @@ $(document).ready(function() {
 
     $(document).on('click', '.roster-link-student', function () {
         $(this).find('label').click();
+    });
+
+    $(document).on('change', '.roster-link-student .checkbox-input', function () {
+        var $this = $(this);
+        var $rosterLinkStudent = $this.closest('.roster-link-student');
+
+        if($rosterLinkStudent.hasClass('checked') && !$this.prop("checked")) {
+            $rosterLinkStudent.find('.remove-tag').show();
+        } else {
+            $rosterLinkStudent.find('.remove-tag').hide();
+        }
+
+        if(!$rosterLinkStudent.hasClass('checked') && $this.prop("checked")) {
+            $rosterLinkStudent.find('.add-tag').show();
+        } else {
+            $rosterLinkStudent.find('.add-tag').hide();
+        }
     });
 
     $(document).on('click', '#student-link-submit-button', function () {
@@ -295,7 +322,8 @@ $(document).ready(function() {
                 $bodyWrapper.append(classTemplate({
                     'class': activeClass,
                     'dateString': dayLabels[d.getDay()] + ' ' + monthLabels[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(),
-                    'time': globals.start_of_day
+                    'time': globals.start_of_day,
+                    'student_length': globals.student_length
                 }));
 
                 $('#student-link-cancel-button').click();
@@ -338,7 +366,8 @@ $(document).ready(function() {
         $bodyWrapper.append(classTemplate({
             'class': globals.classes[$class.attr('data-index')],
             'dateString': dayLabels[d.getUTCDay()] + ' ' + monthLabels[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear(),
-            'time': date
+            'time': date,
+            'student_length': globals.student_length
         }));
 
         $('body').click();

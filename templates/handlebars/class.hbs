@@ -1,50 +1,60 @@
-<div id="class-header-wrapper">
-    <div>
-        <span id="class-name">{{class.name}}</span>
+{{#if class}}
+    <div id="class-header-wrapper">
+        <div>
+            <span id="class-name">{{class.name}}</span>
+        </div>
+        <div id="calendar-button">
+            <span id="calendar-icon"><i class="fas fa-calendar"></i></span>
+            <span id="class-day">{{dateString}}</span>
+            <span id="class-time" data-time="{{time}}">{{class.from_date}} - {{class.to_date}}</span>
+        </div>
+        <div id="link-student-button">
+            <span id="link-student-icon"><i class="fas fa-clipboard"></i></span>
+            Update Roster
+        </div>
     </div>
-    <div id="calendar-button">
-        <span id="calendar-icon"><i class="fas fa-calendar"></i></span>
-        <span id="class-day">{{dateString}}</span>
-        <span id="class-time" data-time="{{time}}">{{class.from_date}} - {{class.to_date}}</span>
-    </div>
-    <div id="link-student-button">
-        <span id="link-student-icon"><i class="fas fa-clipboard"></i></span>
-        Update Roster
-    </div>
-</div>
-
-{{#if class.roster.length}}
-    <table id="attendance-table">
-        <thead>
-            <tr>
-                <th class="sortable" scope="col">Student</th>
-                <th class="sortable" scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each class.roster}}
-                <tr data-id="{{this}}">
-                    <td class="student-name">{{studentDict this 'first_name'}} {{studentDict this 'last_name'}}</td>
-                        <!--Check attendance NOT DONE-->
-                        <td class="attendance-column">
-                        <input type="checkbox" id="attendance-checkbox-{{this}}" data-type="columns" class="checkbox-input column-filter attendance-submit" style="display: none"
-                        {{#ifCond (attendanceCheck ../class.attendance this ../time) '==' true}}checked{{/ifCond}}>
-                        <label for="attendance-checkbox-{{this}}" class="check-box-wrapper">
-                            <span class="check-box">
-                                <svg width="12px" height="10px">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </svg>
-                            </span>
-                        </label>
-                    </td>
+    {{#if class.roster.length}}
+        <table id="attendance-table">
+            <thead>
+                <tr>
+                    <th class="sortable" scope="col">Student</th>
+                    <th class="sortable" scope="col"></th>
                 </tr>
-            {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {{#each class.roster}}
+                    <tr data-id="{{this}}">
+                        <td class="student-name">{{studentDict this 'first_name'}} {{studentDict this 'last_name'}}</td>
+                            <!--Check attendance NOT DONE-->
+                            <td class="attendance-column">
+                            <input type="checkbox" id="attendance-checkbox-{{this}}" data-type="columns" class="checkbox-input column-filter attendance-submit" style="display: none"
+                            {{#ifCond (attendanceCheck ../class.attendance this ../time) '==' true}}checked{{/ifCond}}>
+                            <label for="attendance-checkbox-{{this}}" class="check-box-wrapper">
+                                <span class="check-box">
+                                    <svg width="12px" height="10px">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                            </label>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <div id="empty-roster-wrapper">
+            <span id="empty-roster-icon"><i class="fas fa-users"></i></span>
+            {{#if student.length}}
+                <div id="empty-roster-description">Update roster to add students to {{class.name}}!</div>
+            {{else}}
+                <div id="empty-student-description">Create some students for your class!</div>
+            {{/if}}
+
+        </div>
+    {{/if}}
 {{else}}
-    <div id="empty-roster-wrapper">
-        <span id="empty-roster-icon"><i class="fas fa-users"></i></span>
-        <div id="empty-roster-description">Update roster to add students to {{class.name}}!</div>
+    <div id="empty-class-wrapper">
+        <span id="empty-school-icon"><i class="fas fa-school"></i></span>
+        <div id="empty-class-description">Create a class to get started.</div>
     </div>
 {{/if}}
-

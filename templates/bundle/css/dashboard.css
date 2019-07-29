@@ -177,6 +177,7 @@
     height: 100%;
     margin: 0 0 0 10px;
     padding: 10px;
+    overflow-y: auto;
 }
 
 #side-bar-wrapper h2 {
@@ -333,11 +334,14 @@
 }
 
 .today.active-day {
-    color: #9aff9a;
+    color: #6aff6a;
+    font-weight: bold;
+    font-style: italic;
 }
 
 .inactive-day {
     color: #f79696;
+    display: none;
 }
 
 .today.inactive-day {
@@ -433,7 +437,7 @@ table tbody tr td {
     width: 275px;
 }
 
-#empty-roster-wrapper {
+#empty-roster-wrapper, #empty-class-wrapper {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -450,19 +454,23 @@ table tbody tr td {
             align-items: center;
 }
 
-#empty-roster-icon {
+#empty-roster-icon, #empty-school-icon {
     font-size: 170px;
     margin: 50px 0 0 0;
 }
 
-#empty-roster-description {
+#empty-school-icon {
+    color: #c7c78b;
+}
+
+#empty-roster-description, #empty-class-description, #empty-student-description {
     cursor: pointer;
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
 }
 
-#empty-roster-description:hover {
+#empty-roster-description:hover, #empty-class-description:hover, #empty-student-description:hover {
     cursor: pointer;
     font-size: 18px;
 }
@@ -782,10 +790,14 @@ table tbody tr td {
 #student-link-wrapper {
     display: none;
     position: relative;
+    max-height: calc(100vh - 80px);
+    width: 550px;
 }
 
 #student-link-container {
-    background: #090909;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+    background: #ff9494;
     -webkit-border-top-left-radius: 3px;
             border-top-left-radius: 3px;
     -webkit-border-top-right-radius: 3px;
@@ -793,17 +805,28 @@ table tbody tr td {
     padding: 10px;
 }
 
-#student-link-wrapper {
-    position: relative;
-    width: 550px;
+/* Track */
+#student-link-container::-webkit-scrollbar-track {
+    background: #ffbcbc;
+}
+
+/* Handle */
+#student-link-container::-webkit-scrollbar-thumb {
+    background: #cc6d6d;
+}
+
+/* Handle on hover */
+#student-link-container::-webkit-scrollbar-thumb:hover {
+    background: #ff7373;
 }
 
 #student-link-container #link-icon {
-    color: #2694f5;
+    color: #ff7373;
     font-size: 64px;
     position: absolute;
     top: -25px;
     left: 16px;
+    z-index: 1;
 }
 
 #student-link-section-1 {
@@ -815,7 +838,7 @@ table tbody tr td {
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
-    background: #000000;
+    background: #cc6d6d;
     color: #ffffff;
     cursor: pointer;
 }
@@ -832,8 +855,33 @@ table tbody tr td {
 }
 
 .roster-check .checkbox-input:checked + .check-box-wrapper .check-box {
-    background: #007d0a;
-    border-color: #0d7500;
+    background: #a24a4a;
+    border-color: #b95959;
+}
+
+.remove-tag, .add-tag {
+    display: none;
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    padding: 10px;
+    background: -webkit-radial-gradient(#f59393, transparent);
+    background: -o-radial-gradient(#f59393, transparent);
+    background: radial-gradient(#f59393, transparent);
+}
+
+.remove-tag {
+    right: 12px;
+    background: -webkit-radial-gradient(#f59393, transparent);
+    background: -o-radial-gradient(#f59393, transparent);
+    background: radial-gradient(#f59393, transparent);
+}
+
+.add-tag {
+    right: 23px;
+    background: -webkit-radial-gradient(#fc7d7d, transparent);
+    background: -o-radial-gradient(#fc7d7d, transparent);
+    background: radial-gradient(#fc7d7d, transparent);
 }
 
 #student-link-section-3 {
@@ -863,12 +911,12 @@ table tbody tr td {
             border-bottom-left-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
             border-bottom-right-radius: 3px;
-    background: #000;
+    background: #d27575;
 }
 
 #student-link-cancel-button, #student-link-submit-button {
     color: white;
-    background: #1e1e1e;
+    background: #b65858;
 }
 /*STUDENT LINK*/
 
@@ -1013,7 +1061,7 @@ table tbody tr td {
 }
 
 .month-wrapper {
-    width: 549px;
+    width: 548px;
 }
 
 .month-header {

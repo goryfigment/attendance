@@ -12,6 +12,8 @@ from attendance.controllers.base import models_to_dict
 @login_required
 @data_required(['class_name', 'to_date', 'from_date', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'], 'POST')
 def create_class(request):
+    current_user = request.user
+
     Class.objects.create(
         user=request.user,
         name=request.POST['class_name'],
@@ -27,7 +29,7 @@ def create_class(request):
         sunday=request.POST.get('sunday') == 'true'
     )
 
-    class_list = models_to_dict(Class.objects.all())
+    class_list = models_to_dict(Class.objects.filter(user=current_user))
 
     return JsonResponse({'class': class_list}, safe=False)
 
@@ -35,6 +37,8 @@ def create_class(request):
 @login_required
 @data_required(['first_name', 'last_name', 'school', 'grade', 'address', 'city', 'state', 'zip_code', 'phone_number'], 'POST')
 def create_student(request):
+    current_user = request.user
+
     Student.objects.create(
         user=request.user,
         first_name=request.POST['first_name'],
@@ -48,7 +52,7 @@ def create_student(request):
         phone_number=request.POST['phone_number']
     )
 
-    student_list = models_to_dict(Student.objects.all())
+    student_list = models_to_dict(Student.objects.filter(user=current_user))
 
     return JsonResponse({'students': student_list}, safe=False)
 

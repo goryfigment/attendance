@@ -1,4 +1,4 @@
-{{#if class.roster.length}}
+{{#if classes.length}}
     <div class="roster-wrapper">
         <div id="roster-header-wrapper">
             <h2>Roster</h2>
@@ -19,13 +19,13 @@
                     <div class="class-time">{{replaceAll from_date ':00' ''}} - {{replaceAll to_date ':00' ''}}</div>
                 </div>
                 <div class="class-time-wrapper">
-                    {{#if monday}}<span class="active-day">Mon</span>{{else}}<span class="inactive-day">Mon</span>{{/if}}
-                    {{#if tuesday}}<span class="active-day">Tue</span>{{else}}<span class="inactive-day">Tue</span>{{/if}}
-                    {{#if wednesday}}<span class="active-day">Wed</span>{{else}}<span class="inactive-day">Wed</span>{{/if}}
-                    {{#if thursday}}<span class="active-day">Thu</span>{{else}}<span class="inactive-day">Thu</span>{{/if}}
-                    {{#if friday}}<span class="active-day">Fri</span>{{else}}<span class="inactive-day">Fri</span>{{/if}}
-                    {{#if saturday}}<span class="active-day">Sat</span>{{else}}<span class="inactive-day">Sat</span>{{/if}}
-                    {{#if sunday}}<span class="active-day">Sun</span>{{else}}<span class="inactive-day">Sun</span>{{/if}}
+                    {{#if monday}}<span class="active-day" data-day="1">Mon</span>{{else}}<span class="inactive-day">Mon</span>{{/if}}
+                    {{#if tuesday}}<span class="active-day" data-day="2">Tue</span>{{else}}<span class="inactive-day">Tue</span>{{/if}}
+                    {{#if wednesday}}<span class="active-day" data-day="3">Wed</span>{{else}}<span class="inactive-day">Wed</span>{{/if}}
+                    {{#if thursday}}<span class="active-day" data-day="4">Thu</span>{{else}}<span class="inactive-day">Thu</span>{{/if}}
+                    {{#if friday}}<span class="active-day" data-day="5">Fri</span>{{else}}<span class="inactive-day">Fri</span>{{/if}}
+                    {{#if saturday}}<span class="active-day" data-day="6">Sat</span>{{else}}<span class="inactive-day">Sat</span>{{/if}}
+                    {{#if sunday}}<span class="active-day" data-day="0">Sun</span>{{else}}<span class="inactive-day">Sun</span>{{/if}}
                 </div>
             </div>
         {{/each}}
