@@ -4,6 +4,7 @@ body {
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
+    background: #514896;
 }
 
 body img {
@@ -14,7 +15,7 @@ body img {
 }
 
 h2 {
-    color: #3f9af8;
+    color: #824bee;
     text-align: center;
     font-size: 19px;
     margin-bottom: 20px;
@@ -87,12 +88,12 @@ label {
 }
 
 #login {
-    border: 1.2px #3f9af8 solid;
+    border: 1.2px #b13ff8 solid;
     padding: 7px 14px;
 }
 
 #login:hover {
-    background: #2c5a6169;
+    background: #4d2c6169;
 }
 
 @keyframes fadein {

@@ -3,7 +3,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #0a74e1;
+    background: #514896;
     overflow: hidden;
 }
 
@@ -15,11 +15,12 @@ body img {
 }
 
 h2 {
-    color: #3f9af8;
+    color: #824bee;
     text-align: center;
     font-size: 19px;
     margin-bottom: 12px;
     font-family: 'Karla', Arial, Helvetica, sans-serif, Georgia, serif;
+    margin-top: 0;
 }
 
 label {
@@ -82,12 +83,12 @@ label {
 }
 
 #register {
-    border: 1.2px #3f9af8 solid;
+    border: 1.2px #b13ff8 solid;
     padding: 7px 14px;
 }
 
 #register:hover {
-    background: #2c5a6169;
+    background: #4d2c6169;
 }
 
 #section-1, #section-2 {
@@ -120,12 +121,6 @@ label {
 
 
 /*CHECK*/
-
-h1, h2, h3, h4, h5 {
-    margin: 0;
-    color: #5DBCD2;
-}
-
 label {
     display: block;
     margin-bottom: 5px;
