@@ -80,7 +80,7 @@ def dashboard(request):
     current_user = request.user
 
     classes = list(Class.objects.filter(user=current_user))
-    class_list = []
+    class_list = {}
 
     for current_class in classes:
         roster = []
@@ -97,7 +97,7 @@ def dashboard(request):
         current_class = model_to_dict(current_class)
         current_class['roster'] = roster
         current_class['attendance'] = attendance_list
-        class_list.append(current_class)
+        class_list[current_class['id']] = current_class
 
     students = array_to_dict(list(Student.objects.filter(user=current_user).values()))
 

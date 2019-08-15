@@ -44,11 +44,11 @@
     {{else}}
         <div id="empty-roster-wrapper">
             <span id="empty-roster-icon"><i class="fas fa-users"></i></span>
-            {{#if student.length}}
+            {{#ifCond student_length '>' 0}}
                 <div id="empty-roster-description">Update roster to add students to {{class.name}}!</div>
             {{else}}
                 <div id="empty-student-description">Create some students for your class!</div>
-            {{/if}}
+            {{/ifCond}}
 
         </div>
     {{/if}}

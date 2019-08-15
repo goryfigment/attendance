@@ -1,12 +1,9 @@
 import json
-import time
 from django.forms.models import model_to_dict
-from django.http import JsonResponse, HttpResponseBadRequest
-import base as helper
-from django.contrib.auth import authenticate
+from django.http import JsonResponse
 from attendance.models import Class, Student, StudentClass, Attendance
 from attendance.decorators import login_required, data_required
-from attendance.controllers.base import models_to_dict
+from base import array_to_dict
 
 
 @login_required
@@ -14,7 +11,7 @@ from attendance.controllers.base import models_to_dict
 def create_class(request):
     current_user = request.user
 
-    Class.objects.create(
+    created_class = Class.objects.create(
         user=request.user,
         name=request.POST['class_name'],
         from_date=request.POST['from_date'],
@@ -29,9 +26,28 @@ def create_class(request):
         sunday=request.POST.get('sunday') == 'true'
     )
 
-    class_list = models_to_dict(Class.objects.filter(user=current_user))
+    classes = list(Class.objects.filter(user=current_user))
 
-    return JsonResponse({'class': class_list}, safe=False)
+    class_list = {}
+
+    for current_class in classes:
+        roster = []
+        link_students = current_class.student_classes.all()
+        attendance_list = {}
+        attendance_obj = Attendance.objects.filter(classroom=current_class)
+
+        if len(attendance_obj):
+            for current_attendance in attendance_obj:
+                attendance_list[str(current_attendance.time)] = current_attendance.attendance
+
+        for student in link_students:
+            roster.append(student.id)
+        current_class = model_to_dict(current_class)
+        current_class['roster'] = roster
+        current_class['attendance'] = attendance_list
+        class_list[current_class['id']] = current_class
+
+    return JsonResponse({'class': class_list, 'id': str(created_class.id)}, safe=False)
 
 
 @login_required
@@ -52,9 +68,9 @@ def create_student(request):
         phone_number=request.POST['phone_number']
     )
 
-    student_list = models_to_dict(Student.objects.filter(user=current_user))
+    students = array_to_dict(list(Student.objects.filter(user=current_user).values()))
 
-    return JsonResponse({'students': student_list}, safe=False)
+    return JsonResponse({'students': students}, safe=False)
 
 
 @login_required
@@ -99,10 +115,16 @@ def attendance(request):
 
     # Try to get the attendance
     try:
-        attendance_obj = Attendance.objects.get(time=start_of_day)
+        attendance_obj = Attendance.objects.get(time=start_of_day, classroom=class_obj)
         attendance_obj.attendance[student_id] = checked
         attendance_obj.save()
     except Attendance.DoesNotExist:
-        attendance_obj = Attendance.objects.create(time=start_of_day, classroom=class_obj, attendance={student_id: checked})
+        Attendance.objects.create(time=start_of_day, classroom=class_obj, attendance={student_id: checked})
 
-    return JsonResponse({'attendance': model_to_dict(attendance_obj)}, safe=False)
+    attendance_list = {}
+    attendance_obj = Attendance.objects.filter(classroom=class_obj)
+
+    for current_attendance in attendance_obj:
+        attendance_list[str(current_attendance.time)] = current_attendance.attendance
+
+    return JsonResponse({'attendance': attendance_list}, safe=False)

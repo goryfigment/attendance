@@ -1,4 +1,4 @@
-{{#if classes.length}}
+{{#ifCond classes 'empty' classes}}
     <div class="roster-wrapper">
         <div id="roster-header-wrapper">
             <h2>Roster</h2>
@@ -36,4 +36,4 @@
         <span id="empty-class-icon"><i class="fas fa-lock"></i> <div id="empty-class-message">Oops looks like you don't have any classes!</div></span>
     </div>
     <button id="create-class-button">Create a class <span id="add-class-icon"><i class="fas fa-plus"></i></span></button>
-{{/if}}
+{{/ifCond}}

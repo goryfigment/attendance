@@ -96,6 +96,9 @@
 /*HEADER*/
 
 /* ACCOUNT WRAPPER */
+.error {
+    border: #ff6969 2px solid !important;
+}
 
 #account-wrapper {
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
@@ -106,6 +109,7 @@
     background: #242323;
     display: none;
     white-space: normal;
+    z-index: 2;
 }
 
 #account-wrapper div {
@@ -319,10 +323,16 @@
     width: 100%;
     padding: 10px;
     height: 100%;
+    overflow-y: auto;
 }
 
 #class-header-wrapper {
+    white-space: nowrap;
     display: flex;
+}
+
+#class-header-wrapper div {
+    padding: 0 5px;
 }
 
 #class-name {
@@ -397,7 +407,7 @@ table tbody tr td {
 #empty-roster-wrapper, #empty-class-wrapper {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 45px);
+    height: calc(100% - 63px);
     align-items: center;
 }
 
@@ -423,13 +433,13 @@ table tbody tr td {
 
 /*OVERLAY*/
 #overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     min-height: 100%;
     height: 100vh;
-    background: #000000c7;
+    background: #00000091 !important;
     display: none;
     align-items: center;
     justify-content: center;
@@ -444,7 +454,7 @@ table tbody tr td {
     display: flex;
 }
 
-.class #create-class-wrapper {
+.class-creation #create-class-wrapper {
     display: block;
 }
 
@@ -724,7 +734,7 @@ table tbody tr td {
 }
 
 #student-link-container #link-icon {
-    color: #ff7373;
+    color: #ca6161;
     font-size: 64px;
     position: absolute;
     top: -25px;

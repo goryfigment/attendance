@@ -23,7 +23,7 @@ function init() {
     var d = new Date();
 
     $bodyWrapper.append(classTemplate({
-        'class': globals.classes[$class.attr('data-index')],
+        'class': globals.classes[$class.attr('data-id')],
         'dateString': dayLabels[d.getDay()] + ' ' + monthLabels[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(),
         'time': globals.start_of_day,
         'student_length': globals.student_length
@@ -32,9 +32,27 @@ function init() {
     $('.active-day[data-day="' + String(d.getDay()) + '"]').addClass('today');
 }
 
+function clearForm($wrapper) {
+    var $inputs = $wrapper.find('input');
+    var $errors = $wrapper.find('.error');
+
+    for (var i = 0; i < $inputs.length; i++) {
+        $($inputs[i]).val('');
+    }
+
+    for (var e = 0; e < $errors.length; e++) {
+        $($errors[e]).removeClass('error');
+    }
+    $('input[type=checkbox]').prop('checked',false);
+
+    $wrapper.find('input[type=checkbox]').prop('checked',false);
+}
+
 function addZeroFillers(number) {
     if(number.toString().length == 1) {
         return '0' + number;
+    } else if(!number.length) {
+        return '00';
     } else {
         return number;
     }
@@ -81,7 +99,7 @@ $(document).ready(function() {
     $(document).on('click', 'body, #class-cancel-button, #student-cancel-button, #student-link-cancel-button', function () {
         var $overlay = $('#overlay');
         $overlay.removeClass('active');
-        $overlay.removeClass('class');
+        $overlay.removeClass('class-creation');
         $overlay.removeClass('calendar');
         $overlay.removeClass('student');
         $overlay.removeClass('student-link');
@@ -93,7 +111,7 @@ $(document).ready(function() {
         e.stopPropagation();
         var $overlay = $('#overlay');
         $overlay.addClass('active');
-        $overlay.addClass('class');
+        $overlay.addClass('class-creation');
     });
 
     $(document).on('click', '#create-class-wrapper', function (e) {
@@ -119,11 +137,36 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#class-submit-button', function () {
-        var data = {
-            'class_name': $('#class-name-input').val(),
-            'from_date': $('#left-hour-input').val() + ':' + addZeroFillers(parseInt($('#left-minute-input').val())) + $('#left-period-input').val(),
-            'to_date': $('#right-hour-input').val() + ':' + addZeroFillers(parseInt($('#right-minute-input').val())) + $('#right-period-input').val(),
+        var className = $('#class-name-input').val().trim();
+        var leftHour = $('#left-hour-input').val().trim();
+        var rightHour = $('#right-hour-input').val().trim();
 
+        if(!className.length || !leftHour.length || !rightHour.length) {
+            if(!className.length) {
+                $('#class-name-input').addClass('error');
+            } else {
+                $('#class-name-input').removeClass('error');
+            }
+
+            if(!leftHour.length) {
+                $('#left-hour-input').addClass('error');
+            } else {
+                $('#left-hour-input').removeClass('error');
+            }
+
+            if(!rightHour.length) {
+                $('#right-hour-input').addClass('error');
+            } else {
+                $('#right-hour-input').removeClass('error');
+            }
+
+            return;
+        }
+
+        var data = {
+            'class_name': className,
+            'from_date': leftHour + ':' + addZeroFillers(parseInt($('#left-minute-input').val())) + addZeroFillers($('#left-period-input').val()),
+            'to_date': rightHour + ':' + addZeroFillers(parseInt($('#right-minute-input').val())) + addZeroFillers($('#right-period-input').val()),
             'monday': $('#monday-checkbox').prop("checked"),
             'tuesday': $('#tuesday-checkbox').prop("checked"),
             'wednesday': $('#wednesday-checkbox').prop("checked"),
@@ -142,10 +185,13 @@ $(document).ready(function() {
             success: function (response) {
                 console.log(JSON.stringify(response));
                 globals.classes = response['class'];
-                $('#class-cancel-button').click();
                 var $sideBarWrapper = $('#side-bar-wrapper');
                 $sideBarWrapper.empty();
                 $sideBarWrapper.append(sideBarTemplate({'classes': globals.classes, 'student_length': globals.student_length}));
+                $('#class-cancel-button').click();
+
+                clearForm($('#create-class-wrapper'));
+                $(".class[data-id='" + response['id'] + "']").click();
             }
         });
     });
@@ -159,7 +205,7 @@ $(document).ready(function() {
         var d = new Date();
 
         $bodyWrapper.append(classTemplate({
-            'class': globals.classes[$class.attr('data-index')],
+            'class': globals.classes[$class.attr('data-id')],
             'dateString': dayLabels[d.getDay()] + ' ' + monthLabels[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(),
             'time': globals.start_of_day,
             'student_length': globals.student_length
@@ -168,7 +214,7 @@ $(document).ready(function() {
     //CREATE CLASS//
 
     //ATTENDANCE TABLE//
-    $(document).on('click', '.attendance-column', function (e) {
+    $(document).on('click', '.attendance-column', function () {
         $(this).find('label').click();
     });
 
@@ -200,17 +246,35 @@ $(document).ready(function() {
 
     $(document).on('click', '#student-submit-button', function (e) {
         e.stopPropagation();
+        var firstName = $('#first-name-input').val().trim();
+        var lastName = $('#last-name-input').val().trim();
+
+        if(!firstName.length || !lastName.length) {
+            if(!firstName.length) {
+                $('#first-name-input').addClass('error');
+            } else {
+                $('#first-name-input').removeClass('error');
+            }
+
+            if(!lastName.length) {
+                $('#last-name-input').addClass('error');
+            } else {
+                $('#last-name-input').removeClass('error');
+            }
+
+            return;
+        }
 
         var data = {
-            'first_name': $('#first-name-input').val(),
-            'last_name': $('#last-name-input').val(),
-            'school': $('#school-input').val(),
-            'grade': $('#grade-input').val(),
-            'address': $('#address-input').val(),
-            'state': $('#state-input').val(),
-            'city': $('#city-input').val(),
-            'zip_code': $('#zip-code-input').val(),
-            'phone_number': $('#phone-number-input').val()
+            'first_name': firstName,
+            'last_name': lastName,
+            'school': $('#school-input').val().trim(),
+            'grade': $('#grade-input').val().trim(),
+            'address': $('#address-input').val().trim(),
+            'state': $('#state-input').val().trim(),
+            'city': $('#city-input').val().trim(),
+            'zip_code': $('#zip-code-input').val().trim(),
+            'phone_number': $('#phone-number-input').val().trim()
         };
 
         $.ajax({
@@ -222,7 +286,7 @@ $(document).ready(function() {
             success: function (response) {
                 console.log(JSON.stringify(response));
                 globals.students = response['students'];
-                globals.student_length = globals.students.length.toString();
+                globals.student_length = globals.student_length + 1;
                 $('#student-cancel-button').click();
 
                 var $rosterWrapper = $('.roster-wrapper');
@@ -232,7 +296,8 @@ $(document).ready(function() {
                     $bodyWrapper.append(rosterTemplate(globals.students));
                 }
 
-                $('.total-students').text('Total Students: ' + globals.student_length);
+                $('.total-students').text('Total Students: ' + globals.student_length.toString());
+                clearForm($('#create-student-wrapper'));
             }
         });
     });
@@ -289,7 +354,7 @@ $(document).ready(function() {
         var $rosterStudents = $('.roster-link-student');
         var students = [];
         var removed = [];
-        var currentClass = globals.classes[$('.class.active').attr('data-index')];
+        var currentClass = globals.classes[$('.class.active').attr('data-id')];
         var roster = currentClass['roster'];
 
         for (var i = 0; i < $rosterStudents.length; i++) {
@@ -312,7 +377,7 @@ $(document).ready(function() {
             type: "POST",
             success: function (response) {
                 var $class = $('.class.active');
-                var activeClass = globals.classes[$class.attr('data-index')];
+                var activeClass = globals.classes[$class.attr('data-id')];
                 activeClass['roster'] = response['roster'];
 
                 var $bodyWrapper = $('#body-wrapper');
@@ -332,7 +397,6 @@ $(document).ready(function() {
     });
     //LINK STUDENT//
 
-
     //ATTENDANCE//
     $(document).on('change', '.attendance-submit', function (e) {
         e.stopPropagation();
@@ -350,6 +414,7 @@ $(document).ready(function() {
             type: "POST",
             success: function (response) {
                 console.log(JSON.stringify(response));
+                globals.classes[classId]['attendance'] = response['attendance'];
             }
         });
     });
@@ -364,7 +429,7 @@ $(document).ready(function() {
 
         $bodyWrapper.empty();
         $bodyWrapper.append(classTemplate({
-            'class': globals.classes[$class.attr('data-index')],
+            'class': globals.classes[$class.attr('data-id')],
             'dateString': dayLabels[d.getUTCDay()] + ' ' + monthLabels[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear(),
             'time': date,
             'student_length': globals.student_length
